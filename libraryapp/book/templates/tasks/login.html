@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body{
+            background-color: green;
+        }
+        .container{
+            background-color: lightgreen;
+            display: ruby-base-container;
+            margin-left:600px ;
+            margin-right:600px ;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-align: center;
+            margin-top:270px;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="container">
+    <h3>  Welcome to login page </h3>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>
+        <input type="text" name="email" placeholder="Please enter your email" />
+        </p>
+        <p>
+        <input type="password" name="password" placeholder="Please enter your password" />
+        </p>
+        <p>
+        <input type="submit" />
+        </p>
+    </form>
+
+    <p>
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </p>
+    </div>
+</body>
+</html>

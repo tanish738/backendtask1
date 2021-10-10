@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <style>
+        .container{
+            text-align: center;
+            padding-left: 500px;
+        }
+        .hello{
+            margin:50px;
+            padding:50px ;
+        }
+        .description{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="hello">
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>TASK:{{ form.name }}</p>
+            <p>DESCRIPTION:{{ form.description }}</p>
+            <p>HARDNESS:{{ form.hardness }}</p>
+            <p>{{ user }}</p>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+
+    </div>
+    
+    <div class="container">
+        <div class="card border-info mb-3" style="max-width: 18rem;">
+            <div class="card-header">LISTS OF TASKS</div>
+            <div class="card-body">
+              <h5 class="card-title"></h5>
+              <p class="card-text">
+                {% for task in books %}
+        <table>
+            <div>
+                <tr>
+                    {% if task.complete == True %}
+                    <li><strike>{{ task.name }}</strike></li>
+                {% else %}
+                    <li>{{ task.name }}</li>
+                {% endif %}
+                </tr>
+            </div>
+        
+        <tr>
+            <a href="{% url 'update_task' task.id %}" class="btn btn-info">Update</a>
+        </tr>
+        <tr>
+            <a href="{% url 'delete_task' task.id %}" class="btn btn-danger">Delete</a>
+        </tr>
+        </table>
+    {% endfor %}
+              </p>
+            </div>
+          </div>
+          <a href="{% url 'logout' %}">logout</a>
+    </div>
+    
+</body>
+</html>
